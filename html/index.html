@@ -16,7 +16,7 @@
     }
 
     body {
-      background-color: #f0f8ff;
+      background-color: #ffffff;
       color: #81D4FA;
       padding-top: 90px;
     }
@@ -408,6 +408,74 @@
       }
     }
 
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .lab-tests {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .card:nth-child(even) {
+      background-color: #fff6e5;
+    }
+    .card:nth-child(odd) {
+      background-color: white
+    }
+    .discount {
+      background-color: #ff6b6b;
+      color: #fff;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .price del {
+      color: grey;
+      font-weight: normal;
+      margin-right: 10px;
+    }
+    .image {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 60px;
+      height: auto;
+    }
+    .view-all {
+      float: right;
+      color: #007f5f;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: -40px;
+    }
   </style>
 </head>
 
@@ -483,8 +551,53 @@
   </div>
 </div>
 </div>
+<br><br>
+<h2>Frequently Booked Lab Tests <a href="#" class="view-all"></a></h2>
+  <div class="lab-tests">
+    <br><br><br>
+    <div class="card">
+      <div class="discount">60% OFF</div>
+      <div class="title">Healthy 2025 Full Body Checkup</div>
+      <div class="description">Diagnostic tool for screening and monitoring of your health</div>
+      <div class="price"><del>₹3599</del> ₹1449</div>
+      
+    </div>
+    <br><br>
+    <div class="card">
+      <div class="discount">43% OFF</div>
+      <div class="title">Diabetes Care</div>
+      <div class="description">Specially designed package to cover the preventive care aspects for diabetics</div>
+      <div class="price"><del>₹1399</del> ₹799</div>
+      
+    </div>
+    <br><br>
+    <div class="card">
+      <div class="discount">53% OFF</div>
+      <div class="title">Basic Health Checkup</div>
+      <div class="description">Assesses health of 47 essential body parameters</div>
+      <div class="price"><del>₹2249</del> ₹1049</div>
+      
+    </div>
+    <br><br>
+    <div class="card">
+      <div class="discount">46% OFF</div>
+      <div class="title">Aarogyam Full Body Checkup with Vitamins</div>
+      <div class="description">available booking for 1 month</div>
+      <div class="price"><del>₹4599</del> ₹2499</div>
+      
+      </div>
+      <br><br>
+        <div class="card">
+          <div class="discount">32% OFF</div>
+          <div class="title">Vitamin D & B12 Combo</div>
+          <div class="description">2 tests included </div>
+          <div class="price"><del>₹1500</del> ₹1020</div>
 
+</div>
+    
 
+  </div>
+<br><br><br>
 
 
 
