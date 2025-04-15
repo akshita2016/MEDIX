@@ -216,7 +216,7 @@
     }
 
     .generator h2 {
-      color: #0b4c74;
+      color: hsl(203, 70%, 78%);
       margin-bottom: 1rem;
     }
 
@@ -299,6 +299,115 @@
         align-items: center;
       }
     }
+
+    .outer-container {
+  background-color: f1f6ff; /* White background for outer area */
+  padding: 0px; /* Space between the outer container and the prescription box */
+  /* Optional: adds a slight shadow for effect */
+  border-radius: 12px; /* Optional: rounded corners for the outer container */
+  margin: 30px auto; /* Optional: centered with margin */
+}
+
+
+    .prescription-section {
+      display: flex;
+      justify-content: space-between;
+      background-color: #f1f6ff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(21, 2, 2, 0.05);
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .left-section img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .left-text h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .left-text p {
+      margin: 5px 0 15px;
+      color: #555;
+    }
+
+    .upload-label {
+      display: inline-block;
+      padding: 6px 10px;
+      background-color: #007b76;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1;
+  min-width: auto;          /* Remove any default width */
+  max-width: fit-content;
+    }
+
+    .upload-label:hover {
+      background-color: #005f5a;
+    }
+
+    .upload-input {
+      display: none;
+    }
+
+    .right-section {
+      max-width: 500px;
+    }
+
+    .right-section h4 {
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .step-number {
+      background-color: #e5eeff;
+      color: #0044cc;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: #333;
+    }
+
+    @media screen and (max-width: 768px) {
+      .prescription-section {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
   </style>
 </head>
 
@@ -336,6 +445,48 @@
       <p>Buy only from certified suppliers with verified product quality and safety.</p>
     </div>
   </section>
+ 
+ <!-- Prescription Section -->
+ <div class="outer-container">
+ <div class="prescription-section">
+  <div class="left-section">
+    <div class="left-text">
+      <h3>Order with Prescription</h3>
+      <p>Upload prescription and we will deliver your medicines</p>
+
+      <!-- Working upload -->
+      <label class="upload-label" for="fileUpload">
+        📎 Upload
+      </label>
+      <input type="file" id="fileUpload" class="upload-input" accept="image/*,.pdf">
+    </div>
+  </div>
+
+  <div class="right-section">
+    <h4>How does this work?</h4>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-text">Upload a photo of your prescription</div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-text">Add delivery address and place the order</div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-text">We will call you to confirm the medicines</div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-text">Now, sit back! your medicines will get delivered at your doorstep</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
 
   <section class="generator">
     <h2>Medicine Name Generator</h2>
@@ -352,7 +503,29 @@
   </section> -->
 
   <footer>
-    <p>&copy; 2025 Medix. All rights reserved.</p>
+    
+      <div class="footer1" id="reach">
+        
+    
+          <div id="inner2">
+    
+              <div class="footer-column">
+               
+                 
+                  <p>Address:Chitkara University</p>
+              </div>
+          </div>
+      </div>
+    
+      <div class="footer2">
+          <p> 
+             MediX Copyright © 2025 - All rights reserved 
+              <br>
+              " Medix is committed to keeping you and your data safe and secure."
+              Support & Help</p>
+      </div>
+    
+   
   </footer>
 
   <!-- Floating Chat Button -->
@@ -409,9 +582,11 @@
       // Simulated support reply
       setTimeout(() => {
         appendMessage("support", "Thanks for your message! A support agent will reply soon.");
-      }, 500);
+      }, 600);
     }
   </script>
+
+
 </body>
 
 </html>
