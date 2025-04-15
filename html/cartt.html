@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediX - Modern Pharmacy</title>
+  <style>
+    :root {
+      --primary: #00bfa5;
+      --primary-dark: #008e76;
+      --secondary: #f5f5f5;
+      --text: #333;
+      --light-text: #666;
+      --white: #fff;
+      --shadow: rgba(0,0,0,0.1);
+      --border-radius: 12px;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Segoe UI', sans-serif; 
+    }
+
+    body { 
+      background: #f4f8fc; 
+      padding: 20px;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary);
+      color: var(--white);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo-icon {
+      margin-right: 10px;
+      font-size: 32px;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 400px;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+    }
+
+    .search-box button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .categories {
+      display: flex;
+      gap: 15px;
+      padding-bottom: 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 5px;
+      margin-bottom: 20px;
+    }
+
+    .category {
+      background: var(--white);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 8px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .category.active, .category:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-img {
+      height: 150px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: var(--primary);
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h3 { 
+      margin-bottom: 8px; 
+      font-size: 18px; 
+    }
+    
+    .card .price { 
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 12px; 
+      color: var(--primary); 
+    }
+
+    .card .description {
+      color: var(--light-text);
+      font-size: 14px;
+      margin-bottom: 15px;
+      height: 40px;
+      overflow: hidden;
+    }
+
+    .add-to-cart {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quantity-btn {
+      background: var(--secondary);
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-btn:hover {
+      background: #e0e0e0;
+    }
+
+    .quantity {
+      font-size: 16px;
+      width: 30px;
+      text-align: center;
+    }
+
+    .add-btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .add-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .cart-icon {
+      position: relative;
+      background: var(--white);
+      color: var(--primary);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+
+    .cart-badge {
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .cart {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100vh;
+      background: var(--white);
+      box-shadow: -5px 0 15px var(--shadow);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart.active {
+      transform: translateX(0);
+    }
+
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .cart-header {
+      padding: 20px;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-qty-btn {
+      background: var(--secondary);
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-remove {
+      background: #ff5252;
+      color: var(--white);
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-footer {
+      padding: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .checkout-btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .checkout-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 30px;
+      color: var(--light-text);
+    }
+
+    .empty-cart-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+      color: #ccc;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-box {
+        width: 100%;
+        max-width: 100%;
+        margin: 15px 0;
+      }
+
+      .products {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+
+      .cart {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="logo">
+      <span class="logo-icon">💊</span>
+      <span>MediX</span>
+    </div>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Search for medicines...">
+      <button id="search-btn">🔍</button>
+    </div>
+    <button class="cart-icon" onclick="toggleCart()">
+      <span>🛒</span>
+      <span class="cart-badge" id="cart-count">0</span>
+    </button>
+  </header>
+
+  <div class="categories" id="categories">
+    <button class="category active" data-category="all">All Products</button>
+    <button class="category" data-category="pain">Pain Relief</button>
+    <button class="category" data-category="cold">Cold & Cough</button>
+    <button class="category" data-category="vitamins">Vitamins</button>
+    <button class="category" data-category="devices">Medical Devices</button>
+    <button class="category" data-category="first-aid">First Aid</button>
+  </div>
+
+  <div class="products" id="products">
+    <!-- Medicine cards will be added here -->
+  </div>
+</div>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart" id="cart">
+  <div class="cart-header">
+    <span>Your Cart</span>
+    <button class="close-cart" onclick="toggleCart()">×</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <!-- Cart items will be added here -->
+    <div class="empty-cart" id="empty-cart">
+      <div class="empty-cart-icon">🛒</div>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total:</span>
+      <span>₹<span id="total-price">0</span></span>
+    </div>
+    <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<script>
+  const products = [
+    { id: 1, name: "Paracetamol", price: 20, category: "pain", description: "For fever and mild pain relief" },
+    { id: 2, name: "Cough Syrup", price: 75, category: "cold", description: "Effective for dry cough relief" },
+    { id: 3, name: "Vitamin C Tablets", price: 50, category: "vitamins", description: "Immunity booster, 500mg" },
+    { id: 4, name: "Antibiotic Cream", price: 120, category: "first-aid", description: "For minor cuts and wounds" },
+    { id: 5, name: "Pain Relief Spray", price: 150, category: "pain", description: "Quick relief for muscle pain" },
+    { id: 6, name: "Insulin Injection", price: 300, category: "chronic", description: "For diabetes management" },
+    { id: 7, name: "Blood Pressure Med", price: 200, category: "chronic", description: "Controls hypertension" },
+    { id: 8, name: "Diabetes Tablets", price: 180, category: "chronic", description: "Oral antidiabetic medication" },
+    { id: 9, name: "Amoxicillin Capsules", price: 90, category: "antibiotics", description: "Broad-spectrum antibiotic" },
+    { id: 10, name: "Aspirin Tablets", price: 65, category: "pain", description: "For pain and inflammation" },
+    { id: 11, name: "Ibuprofen", price: 85, category: "pain", description: "Anti-inflammatory pain relief" },
+    { id: 12, name: "Antacid Syrup", price: 55, category: "digestion", description: "Relieves acidity and heartburn" },
+    { id: 13, name: "Skin Allergy Cream", price: 130, category: "skin", description: "Soothes itchy and irritated skin" },
+    { id: 14, name: "Multivitamin Capsules", price: 110, category: "vitamins", description: "Complete daily nutrition" },
+    { id: 15, name: "Oral Rehydration Salts", price: 30, category: "digestion", description: "Prevents dehydration" },
+    { id: 16, name: "Glucose Powder", price: 45, category: "vitamins", description: "Instant energy booster" },
+    { id: 17, name: "Thermometer", price: 250, category: "devices", description: "Digital body temperature monitor" },
+    { id: 18, name: "Bandages (Pack)", price: 60, category: "first-aid", description: "Sterile adhesive bandages" },
+    { id: 19, name: "Hand Sanitizer 100ml", price: 40, category: "hygiene", description: "Kills 99.9% of germs" },
+    { id: 20, name: "Digital BP Monitor", price: 1200, category: "devices", description: "Automatic blood pressure monitor" },
+    { id: 21, name: "Pregnancy Test Kit", price: 70, category: "devices", description: "Early detection test" },
+    { id: 22, name: "Nebulizer Machine", price: 1500, category: "devices", description: "For respiratory conditions" },
+    { id: 23, name: "Face Masks (Pack of 5)", price: 80, category: "hygiene", description: "3-layer protection masks" },
+    { id: 24, name: "Dettol Antiseptic", price: 95, category: "hygiene", description: "Kills germs and bacteria" },
+    { id: 25, name: "Cough Lozenges", price: 25, category: "cold", description: "Soothes throat irritation" },
+    { id: 26, name: "Allergy Tablets", price: 60, category: "allergy", description: "Antihistamine for allergies" },
+    { id: 27, name: "Asthma Inhaler", price: 250, category: "respiratory", description: "Relieves asthma symptoms" },
+    { id: 28, name: "Eye Drops", price: 70, category: "eye-care", description: "For dry and itchy eyes" },
+    { id: 29, name: "Nasal Spray", price: 85, category: "cold", description: "Clears nasal congestion" },
+    { id: 30, name: "Zinc Tablets", price: 50, category: "vitamins", description: "Essential mineral supplement" }
+  ];
+
+
+
+
+let cart = [];
+  let currentCategory = 'all';
+  let searchTerm = '';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    setupCategoryFilters();
+    setupSearch();
+    document.getElementById('cart-overlay').addEventListener('click', toggleCart);
+    document.getElementById('checkout-btn').addEventListener('click', checkout);
+  });
+
+  function setupCategoryFilters() {
+    const categoryBtns = document.querySelectorAll('.category');
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.category;
+        renderProducts();
+      });
+    });
+  }
+
+  function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+
+    searchBtn.addEventListener('click', () => {
+      searchTerm = searchInput.value.toLowerCase().trim();
+      renderProducts();
+    });
+
+    searchInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        searchTerm = searchInput.value.toLowerCase().trim();
+        renderProducts();
+      }
+    });
+  }
+
+  function renderProducts() {
+    const container = document.getElementById("products");
+    container.innerHTML = '';
+
+    const filteredProducts = products.filter(prod => {
+      const matchesCategory = currentCategory === 'all' || prod.category === currentCategory;
+      const matchesSearch = searchTerm === '' || 
+        prod.name.toLowerCase().includes(searchTerm) || 
+        prod.description.toLowerCase().includes(searchTerm);
+      return matchesCategory && matchesSearch;
+    });
+
+    filteredProducts.forEach(prod => {
+      const inCart = cart.find(item => item.id === prod.id);
+      const quantity = inCart ? inCart.qty : 0;
+
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <div class="card-img">💊</div>
+        <div class="card-content">
+          <h3>${prod.name}</h3>
+          <div class="price">₹${prod.price}</div>
+          <div class="description">${prod.description}</div>
+          <div class="add-to-cart">
+            <div class="quantity-control">
+              <button class="quantity-btn" onclick="changeQuantity(${prod.id}, -1)">-</button>
+              <span class="quantity" id="qty-${prod.id}">${quantity}</span>
+              <button class="quantity-btn" onclick="changeQuantity(${prod.id}, 1)">+</button>
+            </div>
+            <button class="add-btn" onclick="addToCart(${prod.id})">
+              ${quantity > 0 ? 'Update' : 'Add'}
+            </button>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function changeQuantity(id, delta) {
+    const qtyElement = document.getElementById(`qty-${id}`);
+    let qty = parseInt(qtyElement.textContent);
+    qty = Math.max(0, qty + delta);
+    qtyElement.textContent = qty;
+  }
+
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    const qtyElement = document.getElementById(`qty-${id}`);
+    const quantity = parseInt(qtyElement.textContent);
+
+    if (quantity === 0) {
+      removeFromCart(id);
+      return;
+    }
+
+    const inCart = cart.find(p => p.id === id);
+    if (inCart) {
+      inCart.qty = quantity;
+    } else {
+      cart.push({ ...product, qty: quantity });
+    }
+
+    updateCart();
+    showAddedNotification(product.name);
+  }
+
+  function showAddedNotification(productName) {
+    console.log(`${productName} added to cart`);
+  }
+
+  function updateCartItemQuantity(id, newQty) {
+    const item = cart.find(p => p.id === id);
+    if (item) {
+      if (newQty <= 0) {
+        removeFromCart(id);
+      } else {
+        item.qty = newQty;
+        updateCart();
+      }
+    }
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(p => p.id !== id);
+    updateCart();
+
+    const qtyElement = document.getElementById(`qty-${id}`);
+    if (qtyElement) {
+      qtyElement.textContent = 0;
+    }
+  }
+
+  function updateCart() {
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const totalPrice = document.getElementById("total-price");
+    const emptyCart = document.getElementById("empty-cart");
+
+    let total = 0;
+    let count = 0;
+
+    cart.forEach(item => {
+      total += item.price * item.qty;
+      count += item.qty;
+    });
+
+    cartCount.textContent = count;
+    totalPrice.textContent = total;
+
+    if (cart.length === 0) {
+      emptyCart.style.display = 'block';
+      cartItems.innerHTML = '';
+      cartItems.appendChild(emptyCart);
+    } else {
+      emptyCart.style.display = 'none';
+      cartItems.innerHTML = '';
+
+      cart.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <div class="cart-item-details">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">₹${item.price}</div>
+          </div>
+          <div class="cart-item-actions">
+            <div class="cart-qty">
+              <button class="cart-qty-btn" onclick="updateCartItemQuantity(${item.id}, ${item.qty - 1})">-</button>
+              <span>${item.qty}</span>
+              <button class="cart-qty-btn" onclick="updateCartItemQuantity(${item.id}, ${item.qty + 1})">+</button>
+            </div>
+            <button class="cart-remove" onclick="removeFromCart(${item.id})">×</button>
+          </div>
+        `;
+        cartItems.appendChild(div);
+      });
+    }
+
+    renderProducts();
+  }
+
+  function toggleCart() {
+    const cartEl = document.getElementById("cart");
+    const overlay = document.getElementById("cart-overlay");
+
+    cartEl.classList.toggle('active');
+    overlay.classList.toggle('active');
+  }
+
+  function checkout() {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+
+    alert('Thank you for your order! Total: ₹' + document.getElementById('total-price').textContent);
+    cart = [];
+    updateCart();
+    toggleCart();
+  }
+</script>
+</body>
+</html>
