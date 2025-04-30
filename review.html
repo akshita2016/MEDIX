@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab Test & Medicine Reviews - Medix</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 30px;
+    }
+    .review-form, .review-list {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .review-item {
+      background: #e6f0ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .item-type {
+      font-size: 14px;
+      color: #0077cc;
+      font-weight: bold;
+    }
+    .item-name {
+      font-weight: bold;
+      font-size: 18px;
+      color: #003366;
+    }
+    .review-text {
+      margin-top: 5px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lab Test & Medicine Reviews</h1>
+
+  <!-- Review Form -->
+  <div class="review-form">
+    <h2>Submit Your Review</h2>
+    <form id="reviewForm">
+      <label for="type">Review Type</label>
+      <select id="type" name="type" required>
+        <option value="">-- Select --</option>
+        <option value="Lab Test">Lab Test</option>
+        <option value="Medicine">Medicine</option>
+      </select>
+
+      <label for="itemName">Test/Medicine Name</label>
+      <input type="text" id="itemName" name="itemName" required>
+
+      <label for="reviewText">Your Review</label>
+      <textarea id="reviewText" name="reviewText" rows="4" required></textarea>
+
+      <button type="submit">Submit Review</button>
+    </form>
+  </div>
+
+  <!-- Reviews Display -->
+  <div class="review-list">
+    <h2>All Reviews</h2>
+
+    <!-- Preloaded example -->
+    <div class="review-item">
+      <div class="item-type">Lab Test</div>
+      <div class="item-name">Complete Blood Count (CBC)</div>
+      <div class="review-text">Quick and painless, results were delivered the next day.</div>
+    </div>
+
+    <div class="review-item">
+      <div class="item-type">Medicine</div>
+      <div class="item-name">Paracetamol 500mg</div>
+      <div class="review-text">Effective in reducing fever quickly, no side effects noticed.</div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('reviewForm');
+    const reviewList = document.querySelector('.review-list');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const type = document.getElementById('type').value;
+      const itemName = document.getElementById('itemName').value;
+      const reviewText = document.getElementById('reviewText').value;
+
+      if (type && itemName && reviewText) {
+        const newReview = document.createElement('div');
+        newReview.className = 'review-item';
+        newReview.innerHTML = `
+          <div class="item-type">${type}</div>
+          <div class="item-name">${itemName}</div>
+          <div class="review-text">${reviewText}</div>
+        `;
+
+        reviewList.appendChild(newReview);
+
+        // Reset form
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
