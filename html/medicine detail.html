@@ -112,6 +112,22 @@
       font-size: 24px;
       cursor: pointer;
     }
+
+    .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            height: 50px;
+        }
+        
   </style>
 </head>
 <body>
@@ -198,7 +214,8 @@
     <p id="modalDescription"></p>
   </div>
 </div>
-
+<button type="submit" class="submit-btn" id="saveProfileBtn" href="index.html">Go Back </button>
+            
 <script>
   function showDetails(title, description) {
     document.getElementById('modalTitle').innerText = title;
@@ -216,6 +233,14 @@
       modal.style.display = "none";
     }
   }
+
+  document.getElementById('saveProfileBtn').addEventListener('click', function () {
+    // Optionally validate and save data here
+    // For example: send data to server using fetch() or AJAX
+
+    // Then redirect to another page
+    window.location.href = 'index.html'; // Replace with your actual next page URL
+  });
 </script>
 
 </body>
