@@ -72,9 +72,33 @@
       font-size: 14px;
       opacity: 0.8;
     }
+
+    /* Home button styling */
+    .home-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #185a9d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .home-btn:hover {
+      background-color: #143d6f;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Home Button -->
+  <button class="home-btn" onclick="goHome()">Home</button>
 
   <h1>Most Affordable Pharmacies in Mohali</h1>
 
@@ -120,6 +144,12 @@
   <div class="footer-note">
     These pharmacies are known for offering affordable medicines in Mohali. Please verify the availability and timings before visiting.
   </div>
+
+  <script>
+    function goHome() {
+      window.location.href = "index.html"; // Change to your homepage filename if different
+    }
+  </script>
 
 </body>
 </html>
