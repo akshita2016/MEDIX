@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medicine Product Details</title>
+  <style>
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e6f0ff;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 60px;
+      font-weight: 700;
+      color: white;
+      background-color: #0074D9;
+      padding: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 60px;
+      padding: 40px 100px;
+      margin: auto;
+      max-width: 1200px;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product h2 {
+      font-size: 18px;
+      margin: 12px 0;
+      color: #004080;
+    }
+
+    .product p {
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    .details-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      margin-top: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #0074D9;
+      color: white;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .details-btn:hover {
+      background-color: #005fa3;
+      transform: scale(1.1);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      text-align: left;
+      position: relative;
+    }
+
+    .close-btn {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Medicine Product Details</h1>
+
+<div class="product-grid">
+  <div class="product">
+    <img src="https://www.shutterstock.com/image-photo/ibuprofeno-acetaminophen-pill-box-paper-260nw-2091336592.jpg" alt="Paracetamol">
+    <h2>Paracetamol 500mg</h2>
+    <p>Pain reliever and fever reducer.</p>
+    <button class="details-btn" onclick="showDetails('Paracetamol 500mg', 'The active ingredient, along with starch, povidone, magnesium stearate, microcrystalline cellulose, and optional coloring agents as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://sharifhomeopharmacy.com/1444-large_default/sbl-insulin-12x.jpg" alt="Insulin">
+    <h2>Insulin 200mg</h2>
+    <p>Controls blood sugar levels.</p>
+    <button class="details-btn" onclick="showDetails('Insulin 200mg', 'The active ingredient, along with glycerol, m-cresol, zinc oxide, sodium phosphate, and water for injection as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKO2LDgCw6xWrDRJuzSbcpQkxpXjZl-WmfYA&s" alt="Cetirizine">
+    <h2>Cetirizine 10mg</h2>
+    <p>Relieves allergy symptoms.</p>
+    <button class="details-btn" onclick="showDetails('Cetirizine 10mg', 'The active ingredient, along with lactose monohydrate, microcrystalline cellulose, magnesium stearate, and colloidal silicon dioxide as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2020/12/HD/IF/ML/95289/amoxicillin-tablets-1000mg.jpeg" alt="Amoxicillin">
+    <h2>Amoxicillin 250mg</h2>
+    <p>Antibiotic for bacterial infections.</p>
+    <button class="details-btn" onclick="showDetails('Amoxicillin 250mg', 'The active ingredient, along with magnesium stearate, sodium starch glycolate, microcrystalline cellulose, and colloidal silicon dioxide as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2023/7/325863554/WI/JM/SY/135658020/ibuprofen-tablets-ip-200-mg-.jpg" alt="Ibuprofen">
+    <h2>Ibuprofen 400mg</h2>
+    <p>Pain reliever and anti-inflammatory.</p>
+    <button class="details-btn" onclick="showDetails('Ibuprofen 400mg', 'The active ingredient, along with lactose, maize starch, colloidal silicon dioxide, magnesium stearate, and hypromellose as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://www.adegenpharma.com/wp-content/uploads/2023/02/OMILESS-20-CAPSULE.jpg" alt="Omeprazole">
+    <h2>Omeprazole 20mg</h2>
+    <p>Treats acidity and ulcers.</p>
+    <button class="details-btn" onclick="showDetails('Omeprazole 20mg', 'The active ingredient, along with magnesium stearate, lactose, sodium lauryl sulfate, and hypromellose as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2023/7/330506870/UM/GZ/QO/135658020/aspirin-dispersible-tablets.jpg" alt="Aspirin">
+    <h2>Aspirin 75mg</h2>
+    <p>Reduces pain and inflammation.</p>
+    <button class="details-btn" onclick="showDetails('Aspirin 75mg', 'The active ingredient, along with starch, calcium carbonate, and magnesium stearate as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2023/8/332709645/ER/VU/LD/6299000/loratadine-10-mg-tablets.jpeg" alt="Loratadine">
+    <h2>Loratadine 10mg</h2>
+    <p>Non-drowsy allergy relief.</p>
+    <button class="details-btn" onclick="showDetails('Loratadine 10mg', 'The active ingredient, along with lactose, microcrystalline cellulose, magnesium stearate, and colloidal silicon dioxide as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://www.netmeds.com/images/product-v1/600x600/916665/metform_500mg_tablet_20s_0_0.jpg" alt="Metformin">
+    <h2>Metformin 500mg</h2>
+    <p>Controls blood sugar in Type 2 diabetes.</p>
+    <button class="details-btn" onclick="showDetails('Metformin 500mg', 'The active ingredient, along with microcrystalline cellulose, povidone, magnesium stearate, and sodium starch glycolate as inactive ingredients.')">Details</button>
+  </div>
+
+  <div class="product">
+    <img src="https://www.drdpharma.in/wp-content/uploads/2020/11/DAZI-250-TAB.-20X6.jpg" alt="Azithromycin">
+    <h2>Azithromycin 500mg</h2>
+    <p>Antibiotic for respiratory infections.</p>
+    <button class="details-btn" onclick="showDetails('Azithromycin 500mg', 'The active ingredient, along with lactose, magnesium stearate, microcrystalline cellulose, and sodium starch glycolate as inactive ingredients.')">Details</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="medicineModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+  </div>
+</div>
+
+<script>
+  function showDetails(title, description) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDescription').innerText = description;
+    document.getElementById('medicineModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('medicineModal').style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('medicineModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
