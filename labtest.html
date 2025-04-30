@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab Tests Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+    }
+    h2 {
+      color: #4a90e2;
+    }
+    .big-box {
+      background: #ffffff;
+      border: 2px solid #4a90e2;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .discount-badge {
+      background: #ff5e5e;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    .card h3 {
+      margin-top: 40px;
+      font-size: 16px;
+      color: #4a90e2;
+    }
+    .card p {
+      font-size: 13px;
+      color: #555;
+    }
+    .price {
+      font-size: 15px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .price del {
+      color: #999;
+      margin-right: 5px;
+    }
+    .price span {
+      color: #00b894;
+      font-weight: bold;
+    }
+    .book-button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 13px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: auto;
+    }
+    .book-button:hover {
+      background-color: #357ABD;
+    }
+    .total-container {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      background: #e0f7fa;
+      padding: 15px;
+      border-radius: 10px;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Frequently Booked Lab Tests</h2>
+
+  <!-- Big Boxes -->
+  <div class="big-box">
+    <div class="card-container">
+
+      <div class="card">
+        <div class="discount-badge">60% OFF</div>
+        <h3>Healthy 2025 Full Body Checkup</h3>
+        <p>Screening and monitoring</p>
+        <div class="price"><del>₹3599</del> <span>₹1449</span></div>
+        <button class="book-button" data-price="1449">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">43% OFF</div>
+        <h3>Diabetes Care</h3>
+        <p>For diabetics</p>
+        <div class="price"><del>₹1399</del> <span>₹799</span></div>
+        <button class="book-button" data-price="799">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">53% OFF</div>
+        <h3>Basic Health Checkup</h3>
+        <p>47 essential parameters</p>
+        <div class="price"><del>₹2249</del> <span>₹1049</span></div>
+        <button class="book-button" data-price="1049">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">46% OFF</div>
+        <h3>Body Checkup + Vitamins</h3>
+        <p>Full checkup + vitamins</p>
+        <div class="price"><del>₹4599</del> <span>₹2499</span></div>
+        <button class="book-button" data-price="2499">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">32% OFF</div>
+        <h3>Vitamin D & B12 Combo</h3>
+        <p>2 Tests</p>
+        <div class="price"><del>₹1500</del> <span>₹1020</span></div>
+        <button class="book-button" data-price="1020">Book Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2nd Big Box -->
+  <div class="big-box">
+    <div class="card-container">
+
+      <div class="card">
+        <div class="discount-badge">50% OFF</div>
+        <h3>Advanced Thyroid Profile</h3>
+        <p>Detailed thyroid function</p>
+        <div class="price"><del>₹1800</del> <span>₹899</span></div>
+        <button class="book-button" data-price="899">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">45% OFF</div>
+        <h3>Heart Health Check</h3>
+        <p>Assess heart risk</p>
+        <div class="price"><del>₹3000</del> <span>₹1650</span></div>
+        <button class="book-button" data-price="1650">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">40% OFF</div>
+        <h3>Kidney Function Test</h3>
+        <p>Creatinine and more</p>
+        <div class="price"><del>₹1200</del> <span>₹720</span></div>
+        <button class="book-button" data-price="720">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">38% OFF</div>
+        <h3>Liver Function Test</h3>
+        <p>Liver enzymes analysis</p>
+        <div class="price"><del>₹1400</del> <span>₹870</span></div>
+        <button class="book-button" data-price="870">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">55% OFF</div>
+        <h3>Comprehensive Health Checkup</h3>
+        <p>Full body package</p>
+        <div class="price"><del>₹4999</del> <span>₹2249</span></div>
+        <button class="book-button" data-price="2249">Book Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3rd Big Box -->
+  <div class="big-box">
+    <div class="card-container">
+
+      <div class="card">
+        <div class="discount-badge">42% OFF</div>
+        <h3>Arthritis Profile</h3>
+        <p>Joint health and inflammation</p>
+        <div class="price"><del>₹2300</del> <span>₹1334</span></div>
+        <button class="book-button" data-price="1334">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">35% OFF</div>
+        <h3>Vitamin Profile Test</h3>
+        <p>Essential vitamins screening</p>
+        <div class="price"><del>₹1999</del> <span>₹1299</span></div>
+        <button class="book-button" data-price="1299">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">48% OFF</div>
+        <h3>Iron Studies</h3>
+        <p>Iron and ferritin levels</p>
+        <div class="price"><del>₹1700</del> <span>₹884</span></div>
+        <button class="book-button" data-price="884">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">50% OFF</div>
+        <h3>Pre-Marital Screening</h3>
+        <p>Essential couple tests</p>
+        <div class="price"><del>₹3200</del> <span>₹1600</span></div>
+        <button class="book-button" data-price="1600">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">37% OFF</div>
+        <h3>Women's Wellness Package</h3>
+        <p>Curated for women</p>
+        <div class="price"><del>₹4200</del> <span>₹2646</span></div>
+        <button class="book-button" data-price="2646">Book Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4th Big Box -->
+  <div class="big-box">
+    <div class="card-container">
+
+      <div class="card">
+        <div class="discount-badge">41% OFF</div>
+        <h3>Men's Wellness Package</h3>
+        <p>Curated for men</p>
+        <div class="price"><del>₹4000</del> <span>₹2360</span></div>
+        <button class="book-button" data-price="2360">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">44% OFF</div>
+        <h3>Senior Citizen Health</h3>
+        <p>Focus on elderly</p>
+        <div class="price"><del>₹5500</del> <span>₹3080</span></div>
+        <button class="book-button" data-price="3080">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">52% OFF</div>
+        <h3>Allergy Panel Test</h3>
+        <p>Common allergens detection</p>
+        <div class="price"><del>₹2800</del> <span>₹1344</span></div>
+        <button class="book-button" data-price="1344">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">49% OFF</div>
+        <h3>Food Intolerance Test</h3>
+        <p>Identify allergies</p>
+        <div class="price"><del>₹3600</del> <span>₹1836</span></div>
+        <button class="book-button" data-price="1836">Book Now</button>
+      </div>
+
+      <div class="card">
+        <div class="discount-badge">36% OFF</div>
+        <h3>Obesity Risk Panel</h3>
+        <p>Obesity marker analysis</p>
+        <div class="price"><del>₹3100</del> <span>₹1984</span></div>
+        <button class="book-button" data-price="1984">Book Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="total-container">
+    Total Amount: ₹<span id="totalAmount">0</span>
+  </div>
+
+  <script>
+    let total = 0;
+    const totalAmount = document.getElementById('totalAmount');
+    const bookButtons = document.querySelectorAll('.book-button');
+
+    bookButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const price = parseInt(button.getAttribute('data-price'));
+        total += price;
+        totalAmount.textContent = total;
+      });
+    });
+  </script>
+
+</body>
+</html>
