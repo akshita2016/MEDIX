@@ -11,12 +11,15 @@
       margin: 0;
       padding: 20px;
     }
+
     h1 {
       text-align: center;
       color: #0077cc;
       margin-bottom: 30px;
     }
-    .review-form, .review-list {
+
+    .review-form,
+    .review-list {
       max-width: 600px;
       margin: auto;
       background: white;
@@ -25,12 +28,16 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 30px;
     }
+
     label {
       font-weight: bold;
       margin-top: 10px;
       display: block;
     }
-    input, select, textarea {
+
+    input,
+    select,
+    textarea {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -38,6 +45,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+
     button {
       background: #0077cc;
       color: white;
@@ -46,32 +54,61 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     button:hover {
       background: #005fa3;
     }
+
     .review-item {
       background: #e6f0ff;
       padding: 15px;
       border-radius: 8px;
       margin-bottom: 15px;
     }
+
     .item-type {
       font-size: 14px;
       color: #0077cc;
       font-weight: bold;
     }
+
     .item-name {
       font-weight: bold;
       font-size: 18px;
       color: #003366;
     }
+
     .review-text {
       margin-top: 5px;
       color: #333;
     }
+
+    <!-- /* Home Button */
+    .home-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #185a9d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+
+    .home-btn:hover {
+      background-color: #143d6f;
+    } -->
   </style>
 </head>
 <body>
+
+  <!-- Home Button -->
+  <!-- <button class="home-btn" onclick="goHome()">Home</button> -->
 
   <h1>Lab Test & Medicine Reviews</h1>
 
@@ -115,10 +152,14 @@
   </div>
 
   <script>
+    function goHome() {
+      window.location.href = "index.html"; // Change this to your actual home page if needed
+    }
+
     const form = document.getElementById('reviewForm');
     const reviewList = document.querySelector('.review-list');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       const type = document.getElementById('type').value;
@@ -135,8 +176,6 @@
         `;
 
         reviewList.appendChild(newReview);
-
-        // Reset form
         form.reset();
       }
     });
