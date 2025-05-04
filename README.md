@@ -15,33 +15,36 @@ Aishwin
 Aditi
 
 ✅ Contributions
+
 🟢 Akshita
-Worked on the home page, info page and cart 
+- Designed and developed the Home, Info, and Cart pages with a focus on clean UI and seamless navigation.
 
-focused on conflict solving
+- Built an intuitive, user-friendly chatbot to assist users with queries and support in real time.
 
-Managed GitHub repository and project milestones
+- Resolved merge conflicts and ensured smooth team collaboration.
+
+- Managed the GitHub repository, tracked project milestones effectively to maintain progress.
 
 🟣 Anshika
-Developed, styled and added dynamic to the sign in, login, tricity, chandigarh, panchkula page 
+- Developed, styled and added dynamic to the sign in, login, tricity, chandigarh, panchkula page .
 
-Focused on responsive design and dynamics of the code
+- Focused on responsive design and dynamics of the code.
 
-Ensured intuitive UI for better user experience
+- Ensured intuitive UI for better user experience.
 
 🔵 Aishwin
-Developed the front end of labtest, review and about  page
+- Designed and developed the front-end for the Lab Test, Review, and About pages, ensuring a cohesive and user-centric interface.
 
-Worked on the comparison feature and integrated it with the UI
+- Built and seamlessly integrated the comparison feature into the UI, enabling users to make informed choices through clear visual comparisons.
 
-focused on conflict solving
+- Resolved merge conflicts . 
 
 🟡 Aditi
-Contributed to the front-end of medicine details, mohali pharmacy
+- Contributed to the front-end of medicine details, mohali pharmacy.
 
-Worked on the search and filtering functions
+- Implemented advanced search and filtering functionality to enhance product discoverability and user convenience.
 
-Helped in testing and debugging for quality assurance
+- Actively participated in testing and debugging, contributing to the stability and overall quality assurance of the application.
 
 🙌 Thank You
 We appreciate your time and feedback.
